@@ -10,7 +10,5 @@ export async function GET() {
         console.log("Not Logged IN")
     }
     
-    return NextResponse.json({
-        message : JSON.stringify(session)
-    });
+    return NextResponse.json(session);
 }

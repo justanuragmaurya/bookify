@@ -24,7 +24,7 @@ export default async function Books() {
       {books.map((book, index) => {
         return (
           <>
-            <Link href={`/book/${book.id}`}>
+            <Link href={`/library/${book.id}`}>
               <div key={index} className="flex flex-col items-center justify-center px-10 py-20 border rounded-md h-full text-balance">
                 <h1>{book.title?.slice(0, 50)}...</h1>
               </div>
