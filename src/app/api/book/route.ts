@@ -21,6 +21,14 @@ export async function POST(req: NextRequest) {
     }
   })
 
+  await prisma.books.update({
+    where:{
+      id:bookid
+    },
+    data:{
+      lastOpenedAt:new Date()
+    }
+  })
 
   return NextResponse.json(book?.bookURL)
 }

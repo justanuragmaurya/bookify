@@ -17,7 +17,8 @@ datasource db {
 model Books{
   id String @id @default(uuid())
   title String? 
-  bookURL String 
+  bookURL String
+  lastOpenedAt DateTime?
   ownerID String
   owner User @relation(fields: [ownerID] ,references: [id])
 }

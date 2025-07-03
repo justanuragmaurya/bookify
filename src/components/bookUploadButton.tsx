@@ -45,7 +45,7 @@ export default function BookUploadButton() {
   };
 
   return (
-    <>
+    <div>
       <input
         ref={inputRef}
         onChange={handleChange}
@@ -56,13 +56,13 @@ export default function BookUploadButton() {
         id=""
       />
       <div
-        className="flex flex-col items-center justify-center px-10 py-20 border border-green-700 border-dashed rounded-md hover:border-green-600 transition-all duration-300 hover:scale-102"
+        className="flex h-full flex-col items-center justify-center border border-green-700 border-dashed rounded-md hover:border-green-600 transition-all duration-300 hover:scale-102"
       >
         <h2 className="text-sm">
           {file&&`${file?.name.slice(0, 20)}...`}
         </h2>
         {file?<div><Button variant={"link"} onClick={handleUpload} disabled={loading}> {loading?<>Uploading <Loader2 className="animate-spin"/></>:<span className="underline hover:text-primary/80">click here to upload</span>} </Button></div>:<Button variant={"link"} onClick={()=>inputRef.current?.click()}>Select File <Plus/></Button>}
       </div>
-    </>
+    </div>
   );
 }   
