@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/components/providers";
-import Header from "@/components/header";
 
 
 export const metadata: Metadata = {
@@ -19,8 +18,7 @@ export default function RootLayout({
       <body
         className={`${""} antialiased`}
       >
-        <Providers>
-        <Header/>
+        <Providers>   
         {children}
         </Providers>
       </body>
