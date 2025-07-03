@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import { Button } from "./ui/button";
@@ -39,6 +39,7 @@ export default function BookUploadButton() {
       }
     }
     setLoading(false);
+    setFile(null);
     router.refresh()
     return;
   };
@@ -60,7 +61,7 @@ export default function BookUploadButton() {
         <h2 className="text-sm">
           {file&&`${file?.name.slice(0, 20)}...`}
         </h2>
-        {file?<div><Button variant={"link"} onClick={handleUpload} disabled={loading}> {loading?"Uploading":<span className="underline hover:text-primary/80">click here to upload</span>} </Button></div>:<Button variant={"link"} onClick={()=>inputRef.current?.click()}>Select File <Plus/></Button>}
+        {file?<div><Button variant={"link"} onClick={handleUpload} disabled={loading}> {loading?<>Uploading <Loader2 className="animate-spin"/></>:<span className="underline hover:text-primary/80">click here to upload</span>} </Button></div>:<Button variant={"link"} onClick={()=>inputRef.current?.click()}>Select File <Plus/></Button>}
       </div>
     </>
   );
