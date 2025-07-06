@@ -40,7 +40,7 @@ export default function BookUploadButton() {
     }
     setLoading(false);
     setFile(null);
-    router.refresh()
+    router.refresh();
     return;
   };
 
@@ -55,14 +55,29 @@ export default function BookUploadButton() {
         name=""
         id=""
       />
-      <div
-        className="flex h-full flex-col items-center justify-center border border-green-700 border-dashed rounded-md hover:border-green-600 transition-all duration-300 hover:scale-102"
-      >
-        <h2 className="text-sm">
-          {file&&`${file?.name.slice(0, 20)}...`}
-        </h2>
-        {file?<div><Button variant={"link"} onClick={handleUpload} disabled={loading}> {loading?<>Uploading <Loader2 className="animate-spin"/></>:<span className="underline hover:text-primary/80">click here to upload</span>} </Button></div>:<Button variant={"link"} onClick={()=>inputRef.current?.click()}>Select File <Plus/></Button>}
+      <div className="flex h-full flex-col items-center justify-center border-2 border-orange-800 border-dashed rounded-md transition-all duration-300 hover:scale-102">
+        <h2 className="text-sm">{file && `${file?.name.slice(0, 20)}...`}</h2>
+        {file ? (
+          <div>
+            <Button variant={"link"} onClick={handleUpload} disabled={loading}>
+              {" "}
+              {loading ? (
+                <>
+                  Uploading <Loader2 className="animate-spin" />
+                </>
+              ) : (
+                <span className="underline hover:text-primary/80">
+                  click here to upload
+                </span>
+              )}{" "}
+            </Button>
+          </div>
+        ) : (
+          <Button variant={"link"} onClick={() => inputRef.current?.click()}>
+            Click to add a PDF<Plus />
+          </Button>
+        )}
       </div>
     </div>
   );
-}   
+}

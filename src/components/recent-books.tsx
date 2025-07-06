@@ -27,8 +27,8 @@ export default async function RecentBooks(){
     <div className="grid grid-cols-5 gap-3 h-full">
       {recentBooks.map((book, index) => {
         return (
-          <Link href={`/library/${book.id}`}>
-             <div key={index} className="flex flex-col justify-between min-h-32 border border-ring/60 hover:border-dashed hover:border-ring rounded-md h-full text-balance hover:scale-102 transition-all duration-300 ">
+          <Link key={index} href={`/library/${book.id}`}>
+             <div className="flex flex-col justify-between min-h-32 border border-ring/60 hover:border-dashed hover:border-ring rounded-md h-full text-balance hover:scale-102 transition-all duration-300 ">
                 <h1 className={`${font.className} font-semibold m-2 flex gap-2`}><BookHeartIcon/>{book.title?.slice(0, 25)} ...</h1>
                 <h2 className={`m-2 text-xs`}>Last Read : {book.lastOpenedAt?.toUTCString()?book.lastOpenedAt?.toUTCString():"Never"}</h2>
               </div>
