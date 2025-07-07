@@ -1,6 +1,7 @@
 "use client"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -20,6 +21,7 @@ export default function UploadDialogBox(){
     const [file, setFile] = React.useState<File | null>(null);
     const [title , setTitle] = useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(false);
+    const closeRef = useRef<any>(null)
       
     const router = useRouter();
 
@@ -53,6 +55,7 @@ export default function UploadDialogBox(){
     }
     setLoading(false);
     setFile(null);
+    closeRef.current.click()
     router.refresh();
     return;
   };
@@ -75,17 +78,20 @@ export default function UploadDialogBox(){
                     type="file"
                     accept="application/pdf"
                 />
-                <div className="flex flex-col gap-2 mt-3">
+                <div className="flex flex-col gap-2">
                     <h2>Enter book's name : </h2>
                     <Input value={title} onChange={(e)=>setTitle(e.target.value)} className="border border-muted-foreground" placeholder="Enter the book name here ..."/>
                 </div>
-                <div className="flex flex-col gap-2 mb-3">
+                <div className="flex flex-col gap-2 mt-2 mb-3">
                     <h2>Select book's pdf file: </h2>
-                    <Button onClick={()=>inputRef.current?.click()} variant={"ghost"}  className="border border-muted-foreground"> Selet PDF <Paperclip/></Button>
+                    <Button onClick={()=>inputRef.current?.click()} variant={"ghost"}  className="border border-muted-foreground"> {file?file.name.slice(0,10)+"...":"Upload"} <Paperclip/></Button>
                 </div>
                 </div>
               <DialogFooter>
-                <Button onClick={handleUpload}>Upload</Button>
+                <Button disabled={(!file) || loading || title.length == 0 } onClick={handleUpload}>{loading?"uploading...":"Upload"}</Button>
+                <DialogClose ref={closeRef}  className="hidden">
+                    Close
+                </DialogClose>
               </DialogFooter>
             </DialogContent>
           </Dialog>
