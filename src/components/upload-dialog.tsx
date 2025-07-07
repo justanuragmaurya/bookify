@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Paperclip, Plus } from "lucide-react";
+import { Loader2, Paperclip, Plus } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -67,7 +67,7 @@ export default function UploadDialogBox(){
               <DialogHeader>
                 <DialogTitle className="font-bold">Add a book !</DialogTitle>
                 <DialogDescription>
-                  Upload your book's pdf give , it a name and click on the upload button.
+                  Upload your book's pdf give , give it a name and click on the upload button.
                 </DialogDescription>
               </DialogHeader>
                 <div>
@@ -88,12 +88,12 @@ export default function UploadDialogBox(){
                 </div>
                 </div>
               <DialogFooter>
-                <Button disabled={(!file) || loading || title.length == 0 } onClick={handleUpload}>{loading?"uploading...":"Upload"}</Button>
-                <DialogClose ref={closeRef}  className="hidden">
+                <Button disabled={ !file || loading || title.length == 0} onClick={handleUpload}>{loading?<>Uploading <Loader2 className="animate-spin"/> </>:"Upload"}</Button>
+                <DialogClose ref={closeRef} className="hidden">
                     Close
                 </DialogClose>
               </DialogFooter>
             </DialogContent>
-          </Dialog>
+    </Dialog>
     )
 }
