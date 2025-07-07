@@ -3,7 +3,8 @@ import { prisma } from "@/lib/db";
 import {Bricolage_Grotesque} from "next/font/google"
 import BookUploadButton from "./bookUploadButton";
 import Link from "next/link";
-import { Book, BookA, BookHeartIcon, BookMarked } from "lucide-react";
+import { BookA, BookMarked } from "lucide-react";
+import Book from "./book";
 
 const font = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -26,19 +27,11 @@ export default async function AllBooks() {
   return(
     <div className="mb-5">
         <h1 className={`${font.className} text-xl font-semibold mb-3 flex gap-2 items-center`}><BookMarked />{" "}All Your Books</h1>
-
-    <div className="grid grid-cols-5 gap-3 h-full">
+    <div className="flex p-3 gap-3 overflow-scroll">
       <BookUploadButton/>
       {books.map((book, index) => {
         return (
-          <div key={index} >
-            <Link href={`/library/${book.id}`}>
-              <div className="flex flex-col justify-between min-h-32 border-2 border-ring/60 hover:border-dashed hover:border-ring rounded-md h-full text-balance hover:scale-102 transition-all duration-300 ">
-                <h1 className={`${font.className} font-semibold m-2 flex gap-2`}><Book/>{book.title?.slice(0, 25)} ...</h1>
-                <h2 className={`m-2 text-xs`}>Last Read : {book.lastOpenedAt?.toUTCString()?book.lastOpenedAt?.toUTCString():"Never"}</h2>
-              </div>
-            </Link>
-          </div>
+          <Book key={index} book={book}/>
         );
       })}
     </div>

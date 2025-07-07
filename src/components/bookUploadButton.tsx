@@ -55,7 +55,7 @@ export default function BookUploadButton() {
         name=""
         id=""
       />
-      <div className="flex h-full flex-col items-center justify-center border-2 border-orange-800 border-dashed rounded-md transition-all duration-300 hover:scale-102">
+      <div className="flex w-48 min-h-64 flex-col items-center justify-center border-2 border-orange-800 border-dashed rounded-md transition-all duration-300 hover:scale-102">
         <h2 className="text-sm">{file && `${file?.name.slice(0, 20)}...`}</h2>
         {file ? (
           <div>
