@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import {Bricolage_Grotesque} from "next/font/google"
-import BookUploadButton from "./bookUploadButton";
 import Link from "next/link";
 import { BookA, BookMarked } from "lucide-react";
 import Book from "./book";
@@ -28,7 +27,6 @@ export default async function AllBooks() {
     <div className="mb-5">
         <h1 className={`${font.className} text-xl font-semibold mb-3 flex gap-2 items-center`}><BookMarked />{" "}All Your Books</h1>
     <div className="flex p-3 gap-3 overflow-scroll">
-      <BookUploadButton/>
       {books.map((book, index) => {
         return (
           <Book key={index} book={book}/>

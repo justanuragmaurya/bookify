@@ -9,8 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
-import React, { useRef } from "react";
+import { Paperclip, Plus } from "lucide-react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Input } from "./ui/input";
@@ -18,6 +18,7 @@ import { Input } from "./ui/input";
 export default function UploadDialogBox(){
     const inputRef = useRef<HTMLInputElement>(null);
     const [file, setFile] = React.useState<File | null>(null);
+    const [title , setTitle] = useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(false);
       
     const router = useRouter();
@@ -42,7 +43,7 @@ export default function UploadDialogBox(){
       }
 
       const db = await axios.post("/api/upload", {
-        title: file.name,
+        title: title,
         bookURL: fileUrl,
       });
 
@@ -74,15 +75,17 @@ export default function UploadDialogBox(){
                     type="file"
                     accept="application/pdf"
                 />
-                
-                <div>
+                <div className="flex flex-col gap-2 mt-3">
                     <h2>Enter book's name : </h2>
-                    <Input placeholder="Enter the book name here ..."/>
+                    <Input value={title} onChange={(e)=>setTitle(e.target.value)} className="border border-muted-foreground" placeholder="Enter the book name here ..."/>
                 </div>
-                
+                <div className="flex flex-col gap-2 mb-3">
+                    <h2>Select book's pdf file: </h2>
+                    <Button onClick={()=>inputRef.current?.click()} variant={"ghost"}  className="border border-muted-foreground"> Selet PDF <Paperclip/></Button>
+                </div>
                 </div>
               <DialogFooter>
-                <Button>Upload</Button>
+                <Button onClick={handleUpload}>Upload</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
