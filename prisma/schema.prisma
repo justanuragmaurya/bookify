@@ -19,6 +19,7 @@ model Books{
   title String? 
   bookURL String
   lastOpenedAt DateTime?
+  createdAt DateTime @default(now())
   ownerID String
   owner User @relation(fields: [ownerID] ,references: [id])
 }

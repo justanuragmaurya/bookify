@@ -21,6 +21,9 @@ export default async function AllBooks() {
     where: {
       ownerID: session?.user?.id!,
     },
+    orderBy:{
+      createdAt:"desc"
+    }
   });
 
   return(
