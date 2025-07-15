@@ -1,25 +1,34 @@
-import { ModeToggle } from "@/components/modetoogle";
+"use client"
 import { Button } from "@/components/ui/button";
-import { BookOpen, Library, Star, Users, Smartphone, Cloud, Search, Heart } from "lucide-react";
+import { BookOpen, Library, Star, Users, Smartphone, Cloud, Search, Heart, Github } from "lucide-react";
+import { motion } from "motion/react"
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        viewport={{ once: true }}
+        className="py-20 px-4 sm:px-6 lg:px-8"
+      >
         <div className="max-w-7xl mx-auto text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
               Your Digital <span className="text-primary">Library</span> Awaits
             </h1>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              Discover, read, and organize thousands of books in one beautiful app. 
+              Discover, read, and organize thousands of books in one beautiful, open-source app. 
               Join millions of readers in the ultimate reading experience.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-6">
+              <Link href={"/library"}><Button size="lg" className="text-lg px-8 py-6">
                 Start Reading Free
               </Button>
+              </Link>
               <Button variant="outline" size="lg" className="text-lg px-8 py-6">
                 <BookOpen className="mr-2 h-5 w-5" />
                 Browse Library
@@ -49,19 +58,25 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
               Everything You Need to Read
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Powerful features designed to enhance your reading experience and help you discover your next favorite book.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -86,42 +101,29 @@ export default function Home() {
                 description: "Your library, bookmarks, and progress are safely stored and synced in the cloud."
               },
               {
-                icon: Users,
-                title: "Reading Community",
-                description: "Connect with fellow readers, share reviews, and join book discussions."
-              },
-              {
                 icon: Heart,
                 title: "Personal Collections",
                 description: "Create custom shelves, track your reading goals, and organize your favorites."
+              },
+              {
+                icon: Github,
+                title: "Open Source",
+                description: "Create custom shelves, track your reading goals, and organize your favorites."
               }
             ].map((feature, index) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2 }}
+                viewport={{ once: true }}
+                key={index} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow"
+              >
                 <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-2">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: "50K+", label: "Books Available" },
-              { number: "1M+", label: "Happy Readers" },
-              { number: "4.9", label: "App Store Rating" },
-              { number: "100+", label: "Countries" }
-            ].map((stat, index) => (
-              <div key={index} className="space-y-2">
-                <div className="text-3xl md:text-4xl font-bold text-primary">{stat.number}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -129,7 +131,13 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
-        <div className="max-w-4xl mx-auto text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center"
+        >
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
             Ready to Start Your Reading Journey?
           </h2>
@@ -144,10 +152,7 @@ export default function Home() {
               Download App
             </Button>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">
-            Free forever. No credit card required.
-          </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
@@ -160,7 +165,8 @@ export default function Home() {
                 <span className="text-xl font-bold text-foreground">Bookify</span>
               </div>
               <p className="text-muted-foreground text-sm">
-                Making reading accessible and enjoyable for everyone, everywhere.
+                Making reading accessible and enjoyable for everyone, everywhere. 
+                Built with ❤️ as an open-source project.
               </p>
             </div>
             <div>
@@ -169,6 +175,7 @@ export default function Home() {
                 <li><a href="#" className="hover:text-foreground transition-colors">Features</a></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Pricing</a></li>
                 <li><a href="#" className="hover:text-foreground transition-colors">Mobile App</a></li>
+                <li><a href="#" className="hover:text-foreground transition-colors">Open Source</a></li>
               </ul>
             </div>
             <div>
