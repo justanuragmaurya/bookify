@@ -1,8 +1,7 @@
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/db";
-import Link from "next/link";
 import {Bricolage_Grotesque} from "next/font/google"
-import { BookHeartIcon, Clock10Icon } from "lucide-react";
+import { Clock10Icon } from "lucide-react";
 import Book from "./book";
 
 const font = Bricolage_Grotesque({
@@ -15,7 +14,7 @@ export default async function RecentBooks(){
 
     const recentBooks = await prisma.books.findMany({
     where: {
-      ownerID: session?.user?.id!,
+      ownerID: session?.user?.id || '',
       lastOpenedAt: { not: null }
     },
     orderBy: { lastOpenedAt: 'desc' },

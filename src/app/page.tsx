@@ -1,18 +1,17 @@
 "use client"
 import { Button } from "@/components/ui/button";
-import { BookOpen, Library, Star, Users, Smartphone, Cloud, Search, Heart, Github } from "lucide-react";
+import { BookOpen, Library, Star, Smartphone, Cloud, Search, Heart, Github } from "lucide-react";
 import { motion } from "motion/react"
 import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-      {/* Hero Section */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, margin: "-200px" }}
         className="py-20 px-4 sm:px-6 lg:px-8"
       >
         <div className="max-w-7xl mx-auto text-center">
@@ -35,8 +34,6 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          
-          {/* Hero Image/Mockup */}
           <div className="mt-16 relative">
             <div className="bg-card border border-border rounded-2xl shadow-2xl p-8 max-w-4xl mx-auto">
               <div className="grid grid-cols-3 gap-4 mb-6">
@@ -59,15 +56,13 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
-
-      {/* Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-200px" }}
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
@@ -115,7 +110,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-200px" }}
                 key={index} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
@@ -128,14 +123,12 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-primary/5">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-200px" }}
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6">
@@ -154,8 +147,6 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-
-      {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">

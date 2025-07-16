@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import { Book, Paperclip, Plus } from "lucide-react";
+import { Book } from "lucide-react";
 import AllBooks from "@/components/all-books";
 import RecentBooks from "@/components/recent-books";
 import { Bricolage_Grotesque } from "next/font/google";

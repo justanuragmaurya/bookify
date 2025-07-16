@@ -21,13 +21,13 @@ export default function UploadDialogBox(){
     const [file, setFile] = React.useState<File | null>(null);
     const [title , setTitle] = useState<string>("");
     const [loading, setLoading] = React.useState<boolean>(false);
-    const closeRef = useRef<any>(null)
+    const closeRef = useRef<HTMLButtonElement>(null);
       
     const router = useRouter();
 
-    const handleChange = async (e: any) => {
-        setFile(e.target.files[0]);
-        return;
+    const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFile(e.target.files?.[0] || null);
+      return;
     };
 
     const handleUpload = async () => {
@@ -55,7 +55,7 @@ export default function UploadDialogBox(){
     }
     setLoading(false);
     setFile(null);
-    closeRef.current.click()
+    closeRef?.current?.click()
     router.refresh();
     return;
   };
@@ -67,7 +67,7 @@ export default function UploadDialogBox(){
               <DialogHeader>
                 <DialogTitle className="font-bold">Add a book !</DialogTitle>
                 <DialogDescription>
-                  Upload your book's pdf give , give it a name and click on the upload button.
+                  Upload your book&apos;s pdf give , give it a name and click on the upload button.
                 </DialogDescription>
               </DialogHeader>
                 <div>
@@ -79,11 +79,11 @@ export default function UploadDialogBox(){
                     accept="application/pdf"
                 />
                 <div className="flex flex-col gap-2">
-                    <h2>Enter book's name : </h2>
+                    <h2>Enter book&apos;s name : </h2>
                     <Input value={title} onChange={(e)=>setTitle(e.target.value)} className="border border-muted-foreground" placeholder="Enter the book name here ..."/>
                 </div>
                 <div className="flex flex-col gap-2 mt-2 mb-3">
-                    <h2>Select book's pdf file: </h2>
+                    <h2>Select book&apos;s pdf file: </h2>
                     <Button onClick={()=>inputRef.current?.click()} variant={"ghost"}  className="border border-muted-foreground"> {file?file.name.slice(0,10)+"...":"Upload"} <Paperclip/></Button>
                 </div>
                 </div>

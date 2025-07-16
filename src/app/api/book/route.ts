@@ -30,5 +30,8 @@ export async function POST(req: NextRequest) {
     }
   })
 
-  return NextResponse.json(book?.bookURL)
+  return NextResponse.json({
+    url:book?.bookURL,
+    currentPage:book?.currentPage
+  })
 }

@@ -55,12 +55,12 @@ export async function POST(req: NextRequest) {
       data: {
         title: title,
         bookURL: bookURL,
-        ownerID: session.user?.id!,
+        ownerID: session.user?.id as string,
       },
     });
     return NextResponse.json({message:"Uploaded Successfully"})
-  } catch (e: any) {
-    console.error("Database Error", 500);
+  } catch (error) {
+    console.error("Database Error : "+error, 500);
     return NextResponse.json({error:true,message:"Error updating data in databse"})
   }
 }

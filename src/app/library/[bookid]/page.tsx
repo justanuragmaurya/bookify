@@ -17,6 +17,7 @@ export default function BookView() {
   const [bookURL, setBookURL] = useState<string>();
   const [pageNumber,setPageNumber] = useState<number>(1);
   const [numPages, setNumPages] = useState<number>(0);
+  const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
 
   const handleNext = useCallback(() => {
     setPageNumber(prev => prev < numPages ? prev + 1 : prev);
@@ -49,10 +50,22 @@ export default function BookView() {
   useEffect(() => {
     const getBook = async () => {
       const book = await axios.post("/api/book", { bookid: params.bookid });
-      setBookURL(book.data);
+      setPageNumber(book.data.currentPage);
+      setBookURL(book.data.url);
+      setIsInitialLoad(false); // Mark initial load as complete
     };
     getBook();
   }, []);
+
+  useEffect(()=>{
+    // Don't update database during initial load
+    if (isInitialLoad) return;
+    
+    const updateCurrentPage = async () =>{
+      await axios.post("/api/update_page_no",{id:params.bookid , page:pageNumber })
+    }
+    updateCurrentPage()
+  },[pageNumber, isInitialLoad])
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyboardInput);
