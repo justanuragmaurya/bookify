@@ -27,7 +27,7 @@ export default async function RecentBooks(){
     <div className="flex sm:grid-cols-3 md:grid-cols-5 gap-3 p-3 h-full overflow-scroll">
       {recentBooks.map((book, index) => {
         return (
-          <Book key={index} book={book}/>
+          <Book key={index} index={index} book={book}/>
         );
       })}
     </div>

@@ -83,7 +83,7 @@ export default function BookView() {
     <div className="flex items-center justify-center h-screen relative">
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
         <div className="bg-background/80 backdrop-blur-sm rounded-md border shadow-sm p-2">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ">
             <Button 
               onClick={handlePrevious} 
               disabled={pageNumber <= 1}
@@ -93,17 +93,20 @@ export default function BookView() {
               <ArrowLeftCircle className="w-4 h-4" />
             </Button>
             
-            <Input 
-              type="text" 
-              value={pageNumber} 
-              onChange={(e) => {
-                const newPage = Number(e.target.value);
-                if (newPage >= 1 && newPage <= numPages) {
-                  setPageNumber(newPage);
-                }
+            <div className="flex gap-2 items-center">
+              <Input 
+                type="text" 
+                value={pageNumber} 
+                onChange={(e) => {
+                  const newPage = Number(e.target.value);
+                  if (newPage >= 1 && newPage <= numPages) {
+                    setPageNumber(newPage);
+                  }
               }}
               className="w-12 h-8 text-center text-sm"
             />
+            <h1>/{" "+numPages}</h1>
+            </div>
             
             <Button 
               onClick={handleNext} 

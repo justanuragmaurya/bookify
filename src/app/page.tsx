@@ -61,7 +61,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true, margin: "-200px" }}
             className="text-center mb-16"
           >
@@ -109,7 +109,7 @@ export default function Home() {
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2 }}
+                transition={{ duration: 0.3 , delay:index* 0.15 }}
                 viewport={{ once: true, margin: "-200px" }}
                 key={index} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
@@ -127,7 +127,7 @@ export default function Home() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           viewport={{ once: true, margin: "-200px" }}
           className="max-w-4xl mx-auto text-center"
         >
